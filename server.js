@@ -64,7 +64,7 @@ const client = new Client({
 // 4. EVENT HANDLER
 // ======================
 const QRCode = require('qrcode');
-const fs = require('fs');
+
 
 client.on('qr', async qr => {
   // Simpan QR sebagai gambar
