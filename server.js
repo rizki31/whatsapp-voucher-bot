@@ -63,13 +63,18 @@ const client = new Client({
 // ======================
 // 4. EVENT HANDLER
 // ======================
-client.on('qr', qr => {
-  // Gunakan opsi small:false untuk QR besar
-  qrcode.generate(qr, { 
-    small: false,  // QR lebih besar
-    width: 8      // Tambahkan parameter width
+const QRCode = require('qrcode');
+const fs = require('fs');
+
+client.on('qr', async qr => {
+  // Simpan QR sebagai gambar
+  await QRCode.toFile('/tmp/whatsapp-qr.png', qr, {
+    width: 500,
+    margin: 2
   });
-  console.log("\n\n🔍 Scan QR Code di bawah ini:\n");
+  
+  console.log("✅ QR Code tersimpan di /tmp/whatsapp-qr.png");
+  console.log("📲 Scan QR Code berikut:");
 });
 client.on('ready', () => {
   console.log('🤖 Bot siap digunakan!');
