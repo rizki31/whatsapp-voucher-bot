@@ -64,10 +64,13 @@ const client = new Client({
 // 4. EVENT HANDLER
 // ======================
 client.on('qr', qr => {
-  qrcode.generate(qr, { small: true });
-  console.log('🔍 Scan QR Code di atas dengan WhatsApp Anda!');
+  // Gunakan opsi small:false untuk QR besar
+  qrcode.generate(qr, { 
+    small: false,  // QR lebih besar
+    width: 8      // Tambahkan parameter width
+  });
+  console.log("\n\n🔍 Scan QR Code di bawah ini:\n");
 });
-
 client.on('ready', () => {
   console.log('🤖 Bot siap digunakan!');
   console.log(`Nomor Admin: ${NOMOR_ADMIN}`);
