@@ -67,14 +67,8 @@ const QRCode = require('qrcode');
 
 
 client.on('qr', qr => {
-  // Bersihkan console sebelum tampilkan QR baru
-  console.clear();
-  
-  // Beri border sekitar QR
-  console.log("╔════════════════════════╗");
-  console.log("║       SCAN QR CODE     ║");
-  console.log("╚════════════════════════╝");
-  qrcode.generate(qr, { small: false });
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(qr)}`;
+  console.log(`📲 Scan QR Code: ${qrUrl}`);
 });
 client.on('ready', () => {
   console.log('🤖 Bot siap digunakan!');
