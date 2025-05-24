@@ -66,15 +66,15 @@ const client = new Client({
 const QRCode = require('qrcode');
 
 
-client.on('qr', async qr => {
-  // Simpan QR sebagai gambar
-  await QRCode.toFile('/tmp/whatsapp-qr.png', qr, {
-    width: 500,
-    margin: 2
-  });
+client.on('qr', qr => {
+  // Bersihkan console sebelum tampilkan QR baru
+  console.clear();
   
-  console.log("✅ QR Code tersimpan di /tmp/whatsapp-qr.png");
-  console.log("📲 Scan QR Code berikut:");
+  // Beri border sekitar QR
+  console.log("╔════════════════════════╗");
+  console.log("║       SCAN QR CODE     ║");
+  console.log("╚════════════════════════╝");
+  qrcode.generate(qr, { small: false });
 });
 client.on('ready', () => {
   console.log('🤖 Bot siap digunakan!');
