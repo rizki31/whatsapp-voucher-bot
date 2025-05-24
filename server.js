@@ -50,28 +50,14 @@ function updateDatabase(data) {
 // 3. KONFIGURASI CLIENT WHATSAPP
 // ======================
 const client = new Client({
-  authStrategy: new LocalAuth({ 
-    dataPath: PATH_SESSION,
-    clientId: 'bot-voucher'
-  }),
   puppeteer: {
-    headless: true,
+    headless: "new",  // Mode baru Puppeteer
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--single-process'
-    ],
-    executablePath: isProduction 
-      ? process.env.PUPPETEER_EXECUTABLE_PATH 
-      : undefined
-  },
-  webVersionCache: {
-    type: 'remote',
-    remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html'
-  },
-  restartOnAuthFail: true,
-  takeoverOnConflict: true
+      '--disable-dev-shm-usage'
+    ]
+  }
 });
 
 // ======================
